@@ -2,7 +2,6 @@
 # Conditional build:
 %bcond_with	tests	# perform "make test" (one test requires libvirtd)
 #
-%include	/usr/lib/rpm/macros.perl
 Summary:	libvirt TCK - Technology Compatibility Kit
 Summary(pl.UTF-8):	libvirt Technology Compatibility Kit - pakiet sprawdzający kompatybilność
 Name:		perl-Sys-Virt-TCK
