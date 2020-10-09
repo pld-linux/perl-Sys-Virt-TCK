@@ -1,36 +1,42 @@
 #
 # Conditional build:
-%bcond_with	tests	# perform "make test" (one test requires libvirtd)
+%bcond_with	tests	# tests execution (one test requires libvirtd)
 #
 Summary:	libvirt TCK - Technology Compatibility Kit
 Summary(pl.UTF-8):	libvirt Technology Compatibility Kit - pakiet sprawdzający kompatybilność
 Name:		perl-Sys-Virt-TCK
-Version:	0.1.0
+Version:	1.1.0
 Release:	1
 License:	GPL v2+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	ftp://libvirt.org/libvirt/tck/Sys-Virt-TCK-%{version}.tar.gz
-# Source0-md5:	1acffc328fb126bafd95fa3ddb00890c
-URL:		http://libvirt.org/
+Source0:	https://libvirt.org/sources/tck/Sys-Virt-TCK-v%{version}.tar.gz
+# Source0-md5:	10857a6350245422c63785d4467af808
+URL:		https://libvirt.org/
 BuildRequires:	perl-Module-Build
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
+BuildRequires:	rpmbuild(macros) >= 1.745
 %if %{with tests}
 BuildRequires:	libvirt-daemon
+BuildRequires:	perl(App::Prove) >= 3.11
+BuildRequires:	perl-CPAN-Changes
 BuildRequires:	perl-Config-Record >= 1.0.0
 BuildRequires:	perl-Digest
 BuildRequires:	perl-Digest-MD5
 BuildRequires:	perl-IO-Compress
-BuildRequires:	perl-IO-String
+BuildRequires:	perl-IO-Interface
+BuildRequires:	perl-NetAddr-IP
 BuildRequires:	perl-Sub-Uplevel
 BuildRequires:	perl-Sys-Virt >= 0.2.0
 BuildRequires:	perl-TAP-Formatter-HTML
+BuildRequires:	perl-TAP-Formatter-JUnit
 BuildRequires:	perl-TAP-Harness-Archive
+BuildRequires:	perl-Test-Exception
 BuildRequires:	perl-Test-Harness >= 3.11
 BuildRequires:	perl-Test-Pod
 BuildRequires:	perl-Test-Pod-Coverage
 BuildRequires:	perl-Test-Simple
-BuildRequires:	perl-XML-Trig
+BuildRequires:	perl-XML-Twig
 BuildRequires:	perl-XML-Writer
 BuildRequires:	perl-XML-XPath
 BuildRequires:	perl-accessors
@@ -52,7 +58,7 @@ powiązanymi usługami systemów operacyjnych oraz konfiguracją systemu.
 Idea (i nazwa) została zainspirowana przez Java TCK.
 
 %prep
-%setup -q -n Sys-Virt-TCK-%{version}
+%setup -q -n Sys-Virt-TCK-v%{version}
 
 %build
 %{__perl} Build.PL \
