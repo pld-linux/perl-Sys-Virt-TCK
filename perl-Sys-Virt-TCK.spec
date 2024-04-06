@@ -5,12 +5,12 @@
 Summary:	libvirt TCK - Technology Compatibility Kit
 Summary(pl.UTF-8):	libvirt Technology Compatibility Kit - pakiet sprawdzający kompatybilność
 Name:		perl-Sys-Virt-TCK
-Version:	1.1.0
+Version:	2.0.0
 Release:	1
 License:	GPL v2+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	https://libvirt.org/sources/tck/Sys-Virt-TCK-v%{version}.tar.gz
-# Source0-md5:	10857a6350245422c63785d4467af808
+Source0:	https://download.libvirt.org/tck/Sys-Virt-TCK-v%{version}.tar.gz
+# Source0-md5:	15090293ccd4757ba1210a6a1c87b3c2
 URL:		https://libvirt.org/
 BuildRequires:	perl-Module-Build
 BuildRequires:	perl-devel >= 1:5.8.0
@@ -18,13 +18,11 @@ BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRequires:	rpmbuild(macros) >= 1.745
 %if %{with tests}
 BuildRequires:	libvirt-daemon
-BuildRequires:	perl(App::Prove) >= 3.11
 BuildRequires:	perl-CPAN-Changes
 BuildRequires:	perl-Config-Record >= 1.0.0
 BuildRequires:	perl-Digest
 BuildRequires:	perl-Digest-MD5
-BuildRequires:	perl-IO-Compress
-BuildRequires:	perl-IO-Interface
+BuildRequires:	perl-IO-String
 BuildRequires:	perl-NetAddr-IP
 BuildRequires:	perl-Sub-Uplevel
 BuildRequires:	perl-Sys-Virt >= 0.2.0
@@ -80,10 +78,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README
+%doc README.rst
 %attr(755,root,root) %{_bindir}/libvirt-tck
 %dir %{_sysconfdir}/libvirt-tck
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/libvirt-tck/default.cfg
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/libvirt-tck/default.yml
 %dir %{perl_vendorlib}/Sys/Virt
 %{perl_vendorlib}/Sys/Virt/TCK.pm
 %{perl_vendorlib}/Sys/Virt/TCK
